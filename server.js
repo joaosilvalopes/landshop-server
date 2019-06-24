@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 const routes = [
     'get-hello-world',
     'post-register',
+    'post-verify-email',
 ];
 
 const client = new pg.Client();
