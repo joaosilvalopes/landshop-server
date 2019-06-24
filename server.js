@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 const routes = [
     'get-hello-world',
+    'get-listings',
     'post-register',
     'post-verify-email',
 ];

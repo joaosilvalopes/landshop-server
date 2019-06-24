@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
-const app = require('../server');
-const dbUtils = require('../db-utils');
+const app = require('../../server');
+const dbUtils = require('../../db-utils');
 
 describe('POST /verify-email', () => {
     beforeAll(async () => {

@@ -24,7 +24,7 @@ module.exports = (app, connection) => app.post('/register', async (req, res) => 
         const hashedPassword = await bcrypt.hash(password, +process.env.SALT_ROUNDS);
 
         await connection.query(`
-            insert into users(username, email, password)
+            insert into Users(username, email, password)
             values($1, $2, $3)
             returning id
         `, [username, email, hashedPassword]);
