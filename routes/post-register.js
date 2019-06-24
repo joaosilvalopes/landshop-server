@@ -2,6 +2,11 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const emailService = require('../services/emailService');
+const {
+    isValidUsername,
+    isValidEmail,
+    isValidPassword,
+} = require('../utils/validation');
 
 const messagePerConstraint = {
     users_email_key: 'A user with this email is already registered',
@@ -11,7 +16,7 @@ const messagePerConstraint = {
 module.exports = (app, connection) => app.post('/register', async (req, res) => {
     const { username, password, email } = req.body;
 
-    if (!password || password.length < 6 || !username || username.length < 5 || !email) {
+    if (!isValidUsername(username) || !isValidPassword(password) || !isValidEmail(email)) {
         return res.status(400).send();
     }
 
@@ -42,8 +47,8 @@ module.exports = (app, connection) => app.post('/register', async (req, res) => 
             `,
         });
 
-        res.send();
+        return res.send();
     } catch (e) {
-        res.status(400).json({ message: messagePerConstraint[e.constraint] });
+        return res.status(400).json({ message: messagePerConstraint[e.constraint] });
     }
 });
