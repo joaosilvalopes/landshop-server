@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const request = require('supertest');
 const app = require('../server');
 const dbUtils = require('../db-utils');
@@ -14,7 +15,7 @@ describe('POST /register', () => {
             .send({
                 username: 'userTest',
                 email: 'user@mail.com',
-                password: '12345'
+                password: '12345',
             })
             .expect(400);
     });
@@ -25,7 +26,7 @@ describe('POST /register', () => {
             .send({
                 username: 'user',
                 email: 'user@mail.com',
-                password: '123456'
+                password: '123456',
             })
             .expect(400);
     });
@@ -36,7 +37,7 @@ describe('POST /register', () => {
             .send({
                 username: 'user',
                 email: '',
-                password: '12345'
+                password: '12345',
             })
             .expect(400);
     });
@@ -47,7 +48,7 @@ describe('POST /register', () => {
             .send({
                 username: 'userTest',
                 email: 'user@mail.com',
-                password: '123456'
+                password: '123456',
             })
             .expect(200);
     });
@@ -58,7 +59,7 @@ describe('POST /register', () => {
             .send({
                 username: 'userTest',
                 email: 'user@mail1.com',
-                password: '123456'
+                password: '123456',
             })
             .expect(400, {
                 message: 'A user with this username is already registered',
@@ -71,7 +72,7 @@ describe('POST /register', () => {
             .send({
                 username: 'userTest1',
                 email: 'user@mail.com',
-                password: '123456'
+                password: '123456',
             })
             .expect(400, {
                 message: 'A user with this email is already registered',

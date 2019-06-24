@@ -12,14 +12,14 @@ const runSql = async (filePath) => {
 
     try {
         await client.query(sql);
-    } catch(error) {
+    } catch (error) {
         console.log(error);
     }
 
     await client.end();
-}
+};
 
 module.exports = {
     dropTables: () => runSql(path.join(__dirname, 'drop-tables.sql')),
     createTables: () => runSql(path.join(__dirname, 'create-tables.sql')),
-}
+};
