@@ -11,12 +11,11 @@ const messagePerConstraint = {
 module.exports = (app, connection) => app.post('/register', async (req, res) => {
     const { username, password, email } = req.body;
 
-    if(!password || password.length < 6 || !username || username.length < 5 || !email) {
+    if (!password || password.length < 6 || !username || username.length < 5 || !email) {
         return res.status(400).send();
     }
 
     try {
-
         const hashedPassword = await bcrypt.hash(password, +process.env.SALT_ROUNDS);
 
         await connection.query(`
@@ -30,7 +29,7 @@ module.exports = (app, connection) => app.post('/register', async (req, res) => 
         await emailService.sendMail({
             from: '"Land Marker" <land-marker@example.com>',
             to: email,
-            subject: "Account verification",
+            subject: 'Account verification',
             html: `
                 <h1>Welcome to land marker!</h1>
                 <p>
@@ -40,11 +39,11 @@ module.exports = (app, connection) => app.post('/register', async (req, res) => 
                     </a>
                     to verify your account
                 </p>
-            `
+            `,
         });
 
         res.send();
-    } catch(e) {
+    } catch (e) {
         res.status(400).json({ message: messagePerConstraint[e.constraint] });
     }
 });
