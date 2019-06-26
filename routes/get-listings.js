@@ -3,7 +3,7 @@ const get = require('lodash/get');
 module.exports = (app, connection) => app.get('/listings', async (req, res) => {
     try {
         const result = await connection.query(`
-            SELECT
+            select
                 l.slug,
                 l.title,
                 l.description,
@@ -14,9 +14,9 @@ module.exports = (app, connection) => app.get('/listings', async (req, res) => {
                 u.username,
                 lc.lat,
                 lc.lng
-            FROM Listings l, Users u, ListingCoordinates lc
-            WHERE l.user_id = u.id
-            AND l.id = lc.listing_id
+            from Listings l, Users u, ListingCoordinates lc
+            where l.user_id = u.id
+            and l.id = lc.listing_id
         `);
 
         const parsed = result.rows.reduce((acc, item) => {
@@ -27,15 +27,12 @@ module.exports = (app, connection) => app.get('/listings', async (req, res) => {
 
             return {
                 ...acc,
-                [item.slug]: {
-                    ...acc[item.slug],
-                    ...newItem,
-                },
+                [item.slug]: newItem,
             };
         }, {});
 
         res.json(parsed);
     } catch (error) {
-        res.status(400).json({ error });
+        res.status(400).json();
     }
 });
