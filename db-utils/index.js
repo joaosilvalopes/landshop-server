@@ -22,4 +22,5 @@ const runSql = async (filePath) => {
 module.exports = {
     dropTables: () => runSql(path.join(__dirname, 'drop-tables.sql')),
     createTables: () => runSql(path.join(__dirname, 'create-tables.sql')),
+    insertData: () => runSql(path.join(__dirname, 'insert-data.sql')),
 };
