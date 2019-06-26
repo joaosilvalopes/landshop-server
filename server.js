@@ -12,7 +12,6 @@ app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
 
 const routes = [
-    'get-hello-world',
     'get-listings',
     'post-register',
     'post-verify-email',
@@ -24,7 +23,7 @@ client.connect();
 
 routes.forEach((suffix) => require(`./routes/${suffix}`)(app, client));
 
-!module.parent && app.listen(app.get('port'), 'localhost', () => {
+app.listen(app.get('port'), 'localhost', () => {
     console.log(`The server is now running at http://localhost:${app.get('port')} in ${app.get('env')} mode.`);
     console.log('Press CTRL-C to stop.\n');
 });

@@ -26,7 +26,6 @@ module.exports = (app, connection) => app.post('/register', async (req, res) => 
         await connection.query(`
             insert into Users(username, email, password)
             values($1, $2, $3)
-            returning id
         `, [username, email, hashedPassword]);
 
         const token = jwt.sign({ username }, process.env.JWT_SECRET);
@@ -49,6 +48,7 @@ module.exports = (app, connection) => app.post('/register', async (req, res) => 
 
         return res.send();
     } catch (e) {
+        // console.log(e);
         return res.status(400).json({ message: messagePerConstraint[e.constraint] });
     }
 });
