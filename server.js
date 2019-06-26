@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 const routes = [
     'get-listings',
     'get-user',
+    'post-login',
     'post-register',
     'post-verify-email',
 ];

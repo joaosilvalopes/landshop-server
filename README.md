@@ -5,11 +5,13 @@
 | Route                             | Working |
 | --------------------------------- | ------- |
 | `POST /register`                  | ✅      |
-| `POST /login`                     | ❌      |
+| `POST /login`                     | ✅      |
 | `POST /recover-password`          | ❌      |
 | `POST /recover-password/:code`    | ❌      |
+| `POST /verify-email`              | ✅      |
 | `GET /verify-email/:code`         | ❌      |
 | `GET /listings`                   | ✅      |
+| `GET /user/:username`             | ✅      |
 | `GET /listing/:slug`              | ❌      |
 
 ### Logeed-in Routes

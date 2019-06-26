@@ -1,6 +1,6 @@
 const nodeMailer = require('nodemailer');
 
-module.exports = nodeMailer.createTransport({
+const emailService = nodeMailer.createTransport({
     host: 'smtp.googlemail.com',
     port: 465,
     secure: true,
@@ -9,3 +9,21 @@ module.exports = nodeMailer.createTransport({
         pass: process.env.GMAIL_PASSWORD,
     },
 });
+
+module.exports = {
+    sendVerificationEmail: (email, token) => emailService.sendMail({
+        from: '"Land Marker" <land-marker@example.com>',
+        to: email,
+        subject: 'Account verification',
+        html: `
+            <h1>Welcome to land marker!</h1>
+            <p>
+                press
+                <a href="https://localhost:3000/verify-email/${token}">
+                    this link
+                </a>
+                to verify your account
+            </p>
+        `,
+    }),
+};

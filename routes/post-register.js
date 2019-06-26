@@ -28,25 +28,19 @@ module.exports = (app, connection) => app.post('/register', async (req, res) => 
             values($1, $2, $3)
         `, [username, email, hashedPassword]);
 
-        const token = jwt.sign({ username }, process.env.JWT_SECRET);
+        const token = jwt.sign({
+            username,
+            verified: false,
+        }, process.env.JWT_SECRET);
 
-        await emailService.sendMail({
-            from: '"Land Marker" <land-marker@example.com>',
-            to: email,
-            subject: 'Account verification',
-            html: `
-                <h1>Welcome to land marker!</h1>
-                <p>
-                    press 
-                    <a href="https://localhost:3000/verify-email/${token}">
-                        this link
-                    </a>
-                    to verify your account
-                </p>
-            `,
+        await emailService.sendVerificationEmail(email, token);
+
+        return res.json({
+            email,
+            username,
+            verified: false,
+            token,
         });
-
-        return res.send();
     } catch (error) {
         if (messagePerConstraint[error.constraint]) {
             return res.status(400).json({ error: messagePerConstraint[error.constraint] });
