@@ -2,6 +2,7 @@ const pg = require('pg');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
+const logger = require('../utils/logger');
 
 const runSql = async (filePath) => {
     const client = new pg.Client();
@@ -13,7 +14,7 @@ const runSql = async (filePath) => {
     try {
         await client.query(sql);
     } catch (error) {
-        console.log(error);
+        logger.log(error);
     }
 
     await client.end();

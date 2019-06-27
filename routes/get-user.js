@@ -1,4 +1,5 @@
 const get = require('lodash/get');
+const logger = require('../utils/logger');
 
 module.exports = (app, connection) => app.get('/user/:username', async (req, res) => {
     try {
@@ -27,7 +28,7 @@ module.exports = (app, connection) => app.get('/user/:username', async (req, res
 
         res.json(parsed);
     } catch (error) {
-        console.log(error);
+        logger.log(error);
         res.status(400).json();
     }
 });

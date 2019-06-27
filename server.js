@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-expressions */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
+/* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
 const pg = require('pg');
