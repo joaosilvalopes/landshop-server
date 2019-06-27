@@ -10,10 +10,10 @@ describe('GET /listings', () => {
         await dbUtils.insertData();
     });
 
-    it('Should respond with JSON', (done) => {
-        request(app)
+    it('Should respond with JSON', async () => {
+        await request(app)
             .get('/listings')
             .expect('Content-Type', /json/)
-            .expect(200, done);
+            .expect(200);
     });
 });

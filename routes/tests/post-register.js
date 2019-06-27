@@ -1,14 +1,8 @@
-/* eslint-disable no-undef */
 const request = require('supertest');
 const app = require('../../server');
-const dbUtils = require('../../db-utils');
+const globals = require('./globals');
 
-describe('POST /register', () => {
-    beforeAll(async () => {
-        await dbUtils.dropTables();
-        await dbUtils.createTables();
-    });
-
+describe('POST /verify-email', () => {
     it('Should fail if password is invalid', async () => {
         await request(app)
             .post('/register')
@@ -24,7 +18,7 @@ describe('POST /register', () => {
         await request(app)
             .post('/register')
             .send({
-                username: 'user',
+                username: 'use',
                 email: 'user@mail.com',
                 password: 'password1234567890',
             })
@@ -43,13 +37,15 @@ describe('POST /register', () => {
     });
 
     it('Should succeed', async () => {
+        globals.user = {
+            username: 'userTest',
+            email: 'user@mail.com',
+            password: 'password1234567890',
+        };
+
         await request(app)
             .post('/register')
-            .send({
-                username: 'userTest',
-                email: 'user@mail.com',
-                password: 'password1234567890',
-            })
+            .send(globals.user)
             .expect(200);
     });
 
