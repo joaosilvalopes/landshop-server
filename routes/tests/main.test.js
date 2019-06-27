@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const dbUtils = require('../../db-utils');
 
 describe('Route main test collection', () => {

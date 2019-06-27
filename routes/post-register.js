@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const logger = require('../utils/logger');
 const emailService = require('../services/emailService');
 const {
     isValidUsername,
@@ -47,8 +47,11 @@ module.exports = (app, connection) => app.post('/register', async (req, res) => 
         });
 
         return res.send();
-    } catch (e) {
-        // console.log(e);
-        return res.status(400).json({ message: messagePerConstraint[e.constraint] });
+    } catch (error) {
+        if (messagePerConstraint[error.constraint]) {
+            return res.status(400).json({ error: messagePerConstraint[error.constraint] });
+        }
+        logger.log(error);
+        return res.status(400).send();
     }
 });

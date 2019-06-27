@@ -8,7 +8,6 @@
         "no-underscore-dangle": 0,
         "object-curly-newline": 0,
         "arrow-parens": 0,
-        "no-console": 0,
         "camelcase": 0,
         "max-len": [ "error", 200, 2, {
                 "ignoreUrls": true,
@@ -17,6 +16,10 @@
                 "ignoreStrings": false,
                 "ignoreTemplateLiterals": false
             }
-        ]
+        ],
+        "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.js", "/routes/tests/*"] }]
+    },
+    "env": {
+        "jest": true
     }
 }
