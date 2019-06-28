@@ -12,6 +12,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
 
 const routes = [
+    'get-listing',
     'get-listings',
     'get-user',
     'post-register',
