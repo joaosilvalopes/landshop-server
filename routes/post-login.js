@@ -25,7 +25,7 @@ module.exports = (app, connection) => app.post('/login', async (req, res) => {
                 password,
                 verified,
                 bio,
-                phone_number
+                phone
             from Users
             where ${isEmail ? 'email' : 'username'} = $1
         `, [login]);

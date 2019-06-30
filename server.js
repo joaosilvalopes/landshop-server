@@ -18,6 +18,7 @@ const routes = [
     'post-login',
     'post-register',
     'post-verify-email',
+    'post-listing',
 ];
 
 const client = new pg.Client();
