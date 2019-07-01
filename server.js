@@ -15,6 +15,7 @@ const routes = [
     'get-listing',
     'get-listings',
     'get-user',
+    'post-login',
     'post-register',
     'post-verify-email',
 ];

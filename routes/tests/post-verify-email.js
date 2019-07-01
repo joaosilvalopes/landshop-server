@@ -12,7 +12,10 @@ describe('POST /verify-email', () => {
     });
 
     it('Should succeed', async () => {
-        const token = jwt.sign({ username: globals.user.username }, process.env.JWT_SECRET);
+        const token = jwt.sign({
+            username: globals.user.username,
+            verified: globals.user.verified,
+        }, process.env.JWT_SECRET);
 
         await request(app)
             .post('/verify-email')
