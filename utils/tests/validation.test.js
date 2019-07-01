@@ -50,9 +50,6 @@ describe('utils/validation', () => {
         expect(isValidName(undefined)).toBe(false);
         expect(isValidName([])).toBe(false);
         expect(isValidName({})).toBe(false);
-        expect(isValidName('Bad With Numbers 123')).toBe(false);
-        expect(isValidName('Bad With Symbols _%&')).toBe(false);
-        expect(isValidName('Bad With Emoji 💩')).toBe(false);
         expect(isValidName('tooLongName'.repeat(500))).toBe(false);
         expect(isValidName('Good Name')).toBe(true);
     });

@@ -58,7 +58,7 @@ describe('POST /verify-email', () => {
                 password: 'password1234567890',
             })
             .expect(400, {
-                message: 'A user with this username is already registered',
+                error: 'A user with this username is already registered',
             });
     });
 
@@ -71,7 +71,7 @@ describe('POST /verify-email', () => {
                 password: 'password1234567890',
             })
             .expect(400, {
-                message: 'A user with this email is already registered',
+                error: 'A user with this email is already registered',
             });
     });
 });

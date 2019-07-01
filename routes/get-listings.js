@@ -10,8 +10,8 @@ module.exports = (app, connection) => app.get('/listings', async (req, res) => {
                 l.description,
                 l.price,
                 l.currency,
-                l.public_phone,
-                l.public_email,
+                l.phone,
+                l.email,
                 u.username,
                 lc.lat,
                 lc.lng

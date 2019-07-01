@@ -10,6 +10,8 @@ describe('Route main test collection', () => {
     require('./post-register.js');
     require('./post-verify-email.js');
     require('./post-login.js');
-    require('./get-listings.js');
     require('./get-user.js');
+    require('./post-listing.js');
+    require('./get-listing.js');
+    require('./get-listings.js');
 });
