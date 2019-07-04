@@ -20,14 +20,15 @@ secureRoutes.forEach(([method, path]) => app[method](path, secure));
 app.use(bodyParser.json());
 
 const routes = [
+    'get-listing',
+    'get-listings',
     'get-user',
+    'post-listing',
     'post-login',
+    'post-recover-password-email',
     'post-register',
     'post-verify-email',
     'put-password',
-    'post-listing',
-    'get-listing',
-    'get-listings',
 ];
 
 const client = new pg.Client();

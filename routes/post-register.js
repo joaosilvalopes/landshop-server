@@ -9,8 +9,8 @@ const {
 } = require('../utils/validation');
 
 const messagePerConstraint = {
-    users_email_key: 'A user with this email is already registered',
-    users_username_key: 'A user with this username is already registered',
+    users_email_key: 'A user with this email is already registered.',
+    users_username_key: 'A user with this username is already registered.',
 };
 
 module.exports = (app, connection) => app.post('/register', async (req, res) => {
@@ -21,7 +21,7 @@ module.exports = (app, connection) => app.post('/register', async (req, res) => 
     }
 
     try {
-        const hashedPassword = await bcrypt.hash(password, +process.env.SALT_ROUNDS);
+        const hashedPassword = await bcrypt.hash(password, +process.env.BCRYPT_SALT_ROUNDS);
 
         await connection.query(`
             insert into Users(username, email, password)

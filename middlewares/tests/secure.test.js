@@ -1,7 +1,7 @@
 const request = require('supertest');
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const secure = require('./secure');
+const secure = require('../secure');
 
 let app;
 let server;

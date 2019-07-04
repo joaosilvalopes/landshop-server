@@ -6,6 +6,28 @@
 	},
 	"item": [
 		{
+			"name": "/listing/:slug",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api}}/listing/bermuda-triangle",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"listing",
+						"bermuda-triangle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/listings",
 			"request": {
 				"method": "GET",
@@ -49,7 +71,7 @@
 			"response": []
 		},
 		{
-			"name": "/register",
+			"name": "/listing",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -62,15 +84,15 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"diogocapela\",\n    \"email\": \"diogocapela@example.com\",\n    \"password\": \"password1234567890\"\n}"
+					"raw": "{\n    \"username\": \"diogocapelawwww\",\n    \"title\": \"My Listing\",\n    \"description\": \"Description goes here.\",\n    \"price\": 20,\n    \"currency\": \"EUR\",\n    \"phone\": \"+351912345678\",\n    \"email\": \"public@example.com\",\n    \"coordinates\": [\n        {\n            \"lat\": 25.774,\n            \"lng\": -80.190\n        },\n        {\n            \"lat\": 18.466,\n            \"lng\": -66.118\n        },\n        {\n            \"lat\": 32.321,\n            \"lng\": -64.757\n        }\n    ]\n}"
 				},
 				"url": {
-					"raw": "{{api}}/register",
+					"raw": "{{api}}/listing",
 					"host": [
 						"{{api}}"
 					],
 					"path": [
-						"register"
+						"listing"
 					]
 				}
 			},
@@ -90,7 +112,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"login\": \"diogocapela\",\n\t\"password\": \"password1234567890\"\n}"
+					"raw": "{\n\t\"login\": \"diogocapela\",\n\t\"password\": \"?123password!!!!!\"\n}"
 				},
 				"url": {
 					"raw": "{{api}}/login",
@@ -99,6 +121,62 @@
 					],
 					"path": [
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/recover-password-email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"diogocapela@example.com\"\n}"
+				},
+				"url": {
+					"raw": "{{api}}/recover-password-email",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"recover-password-email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"diogocapela\",\n    \"email\": \"diogocapessssssla@example.com\",\n    \"password\": \"password1234567890\"\n}"
+				},
+				"url": {
+					"raw": "{{api}}/register",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"register"
 					]
 				}
 			},
@@ -131,6 +209,49 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "/password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRpb2dvY2FwZWxhIiwidmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE1NjIyODIwMjV9.PparkWxApViw5crzjJOuNogKxArUvdNgSgtwU7C_TUM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"oldPassword\": \"password1234567890\",\n    \"newPassword\": \"?123password!!!!!\"\n}"
+				},
+				"url": {
+					"raw": "{{api}}/password",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"password"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -157,7 +278,7 @@
 	],
 	"variable": [
 		{
-			"id": "f1df8894-7984-4cc5-8b85-784263538631",
+			"id": "fc31f77d-f214-46bf-857b-7deba22add65",
 			"key": "api",
 			"value": "http://localhost:3000",
 			"type": "string"
