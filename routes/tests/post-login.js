@@ -34,12 +34,14 @@ describe('POST /login', () => {
     });
 
     it('Should work with email', async () => {
-        await request(app)
+        const res = await request(app)
             .post('/login')
             .send({
                 login: globals.user.email,
                 password: globals.user.password,
             })
             .expect(200);
+
+        globals.user.token = res.body.token;
     });
 });
