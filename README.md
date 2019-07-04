@@ -18,10 +18,10 @@
 
 | Route                             | Working |
 | --------------------------------- | ------- |
-| `PUT /update-password`            | ❌      |
-| `PUT /update-profile`             | ❌      |
-| `PUT /update-email`               | ❌      |
-| `DELETE /delete-account`          | ❌      |
-| `POST /create-listing`            | ❌      |
-| `PUT /update-listing`             | ❌      |
-| `DELETE /delete-listing`          | ❌      |
+| `PUT /password`                   | ✅      |
+| `PUT /profile`                    | ❌      |
+| `PUT /email`                      | ❌      |
+| `DELETE /account`                 | ❌      |
+| `POST /listing`                   | ✅      |
+| `PUT /listing`                    | ❌      |
+| `DELETE /listing`                 | ❌      |
