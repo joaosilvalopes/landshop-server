@@ -10,11 +10,12 @@ describe('Route main test collection', () => {
 
     afterAll(closeServer);
 
-    require('./post-register.js');
-    require('./post-verify-email.js');
-    require('./post-login.js');
-    require('./get-user.js');
-    require('./post-listing.js');
-    require('./get-listing.js');
-    require('./get-listings.js');
+    require('./post-register');
+    require('./get-user');
+    require('./post-verify-email');
+    require('./post-login');
+    require('./put-password');
+    require('./post-listing');
+    require('./get-listing');
+    require('./get-listings');
 });

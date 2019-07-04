@@ -12,7 +12,7 @@ const app = express();
 app.set('port', process.env.PORT || 3000);
 
 const secureRoutes = [
-    ['get', '/secure-route-example'],
+    ['put', '/password'],
 ];
 
 secureRoutes.forEach(([method, path]) => app[method](path, secure));
@@ -20,13 +20,14 @@ secureRoutes.forEach(([method, path]) => app[method](path, secure));
 app.use(bodyParser.json());
 
 const routes = [
-    'get-listing',
-    'get-listings',
     'get-user',
     'post-login',
     'post-register',
     'post-verify-email',
+    'put-password',
     'post-listing',
+    'get-listing',
+    'get-listings',
 ];
 
 const client = new pg.Client();
