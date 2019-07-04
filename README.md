@@ -7,12 +7,11 @@
 | `POST /register`                  | ✅      |
 | `POST /login`                     | ✅      |
 | `POST /recover-password`          | ❌      |
-| `POST /recover-password/:code`    | ❌      |
-| `POST /verify-email`              | ✅      |
-| `GET /verify-email/:code`         | ❌      |
+| `POST /recover-password/:token`   | ❌      |
+| `POST /verify-email/:token`       | ✅      |
 | `GET /listings`                   | ✅      |
 | `GET /user/:username`             | ✅      |
-| `GET /listing/:slug`              | ❌      |
+| `GET /listing/:slug`              | ✅      |
 
 ### Logeed-in Routes
 
