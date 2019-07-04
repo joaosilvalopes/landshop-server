@@ -23,11 +23,7 @@ module.exports = (app, connection) => app.post('/listing', async (req, res) => {
         await connection.query(`
             insert into ListingCoordinates(listing_id, lat, lng) values
             ${coordinates.map((_, i) => `($${i * 3 + 1}, $${i * 3 + 2}, $${i * 3 + 3})`)}
-        `, coordinates.reduce((acc, c) => {
-            acc.push(id, c.lat, c.lng);
-
-            return acc;
-        }, []));
+        `, coordinates.flatMap(({ lat, lng }) => [id, lat, lng]));
 
         await connection.query('commit');
 

@@ -1,6 +1,6 @@
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
-const app = require('../../server');
+const { app } = require('../../server');
 const globals = require('./globals');
 
 describe('POST /verify-email', () => {

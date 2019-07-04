@@ -27,5 +27,11 @@
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
     "supertest": "^4.0.2"
+  },
+  "engines": {
+    "node": ">=11.15.0"
+  },
+  "jest": {
+    "globalSetup": "./jest-globals/setup"
   }
 }

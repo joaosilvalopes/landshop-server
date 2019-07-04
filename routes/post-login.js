@@ -11,9 +11,9 @@ const {
 module.exports = (app, connection) => app.post('/login', async (req, res) => {
     const { login, password } = req.body;
 
-    const isEmail = login && login.includes('@');
+    const isEmail = isValidEmail(login);
 
-    if ((isEmail ? !isValidEmail(login) : !isValidUsername(login)) || !isValidPassword(password)) {
+    if ((!isEmail && !isValidUsername(login)) || !isValidPassword(password)) {
         return res.status(400).send();
     }
 

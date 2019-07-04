@@ -4,11 +4,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pg = require('pg');
+const secure = require('./middlewares/secure');
 require('dotenv').config();
 
 const app = express();
 
 app.set('port', process.env.PORT || 3000);
+
+const secureRoutes = [
+    ['get', '/secure-route-example'],
+];
+
+secureRoutes.forEach(([method, path]) => app[method](path, secure));
+
 app.use(bodyParser.json());
 
 const routes = [
@@ -27,9 +35,12 @@ client.connect();
 
 routes.forEach((suffix) => require(`./routes/${suffix}`)(app, client));
 
-app.listen(app.get('port'), 'localhost', () => {
+const server = app.listen(app.get('port'), 'localhost', () => {
     console.log(`The server is now running at http://localhost:${app.get('port')} in ${app.get('env')} mode.`);
     console.log('Press CTRL-C to stop.\n');
 });
 
-module.exports = app;
+module.exports = {
+    app,
+    closeServer: () => server.close(),
+};
