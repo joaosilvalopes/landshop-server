@@ -19,7 +19,7 @@
 | --------------------------------- | ------- |
 | `PUT /password`                   | ✅      |
 | `PUT /profile`                    | ❌      |
-| `PUT /email`                      | ❌      |
+| `PUT /email`                      | ✅      |
 | `DELETE /account`                 | ❌      |
 | `POST /listing`                   | ✅      |
 | `PUT /listing`                    | ❌      |
