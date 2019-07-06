@@ -9,12 +9,19 @@
 `GET /user/:username` ✅
 
 `POST /login` ✅
+<details>
+<summary>Request</summary>
 ```
 {
     "login": "user@example.com",
     "password: "password123?"
 }
 ```
+</details>
+
+<details>
+<summary>Response</summary>
+</details>
 
 `POST /recover-password-email` ✅
 ```
