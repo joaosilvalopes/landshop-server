@@ -13,7 +13,7 @@ module.exports = (app, connection) => app.put('/password', async (req, res) => {
         `, [user.username]);
 
         if (!await bcrypt.compare(oldPassword, password)) {
-            return res.status(403).send();
+            return res.status(403).send({ error: 'Wrong password.' });
         }
 
         if (newPassword === oldPassword) {
@@ -24,7 +24,7 @@ module.exports = (app, connection) => app.put('/password', async (req, res) => {
             return res.status(400).send();
         }
 
-        const hashedPassword = await bcrypt.hash(newPassword, +process.env.SALT_ROUNDS);
+        const hashedPassword = await bcrypt.hash(newPassword, +process.env.BCRYPT_SALT_ROUNDS);
 
         await connection.query(`
             update Users

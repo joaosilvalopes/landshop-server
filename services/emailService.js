@@ -18,19 +18,37 @@ const emailService = nodeMailer.createTransport({
     },
 });
 
+const WEBSITE_NAME = 'Land Marker';
+const NO_REPLY_EMAIL = 'no-reply@example.com';
+
 module.exports = {
     sendVerificationEmail: (email, token) => emailService.sendMail({
-        from: '"Land Marker" <land-marker@example.com>',
+        from: `"${WEBSITE_NAME}" <${NO_REPLY_EMAIL}>`,
         to: email,
-        subject: 'Account verification',
+        subject: 'Verify Email',
         html: `
-            <h1>Welcome to land marker!</h1>
+            <h1>Verify Email</h1>
             <p>
-                press
+                Click
                 <a href="https://localhost:3000/verify-email/${token}">
                     this link
                 </a>
-                to verify your account
+                to verify your email.
+            </p>
+        `,
+    }),
+    sendRecoverPasswordEmail: (email, token) => emailService.sendMail({
+        from: `"${WEBSITE_NAME}" <${NO_REPLY_EMAIL}>`,
+        to: email,
+        subject: 'Recover Password',
+        html: `
+            <h1>Recover Password</h1>
+            <p>
+                Click
+                <a href="https://localhost:3000/recover-password/${token}">
+                    this link
+                </a>
+                to recover your password.
             </p>
         `,
     }),

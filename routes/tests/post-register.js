@@ -2,7 +2,7 @@ const request = require('supertest');
 const { app } = require('../../server');
 const globals = require('./globals');
 
-describe('POST /verify-email', () => {
+describe('POST /register', () => {
     it('Should fail if password is invalid', async () => {
         await request(app)
             .post('/register')
@@ -58,7 +58,7 @@ describe('POST /verify-email', () => {
                 password: 'password1234567890',
             })
             .expect(400, {
-                error: 'A user with this username is already registered',
+                error: 'A user with this username is already registered.',
             });
     });
 
@@ -71,7 +71,7 @@ describe('POST /verify-email', () => {
                 password: 'password1234567890',
             })
             .expect(400, {
-                error: 'A user with this email is already registered',
+                error: 'A user with this email is already registered.',
             });
     });
 });
