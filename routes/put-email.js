@@ -15,7 +15,7 @@ module.exports = (app, connection) => app.put('/email', async (req, res) => {
         await connection.query(`
             update Users
             set
-                email = $1
+                email = $1,
                 verified = false
             where username = $2
         `, [email, user.username]);

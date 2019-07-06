@@ -13,6 +13,8 @@ app.set('port', process.env.PORT || 3000);
 
 const secureRoutes = [
     ['put', '/password'],
+    ['put', '/email'],
+    ['post', '/listing'],
 ];
 
 secureRoutes.forEach(([method, path]) => app[method](path, secure));
@@ -29,6 +31,7 @@ const routes = [
     'post-register',
     'post-verify-email',
     'put-password',
+    'put-email',
 ];
 
 const client = new pg.Client();

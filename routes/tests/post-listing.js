@@ -34,6 +34,7 @@ describe('POST /listing', () => {
 
         const res = await request(app)
             .post('/listing')
+            .set({ authorization: `Bearer ${globals.user.token}` })
             .send(data)
             .expect(200);
 
