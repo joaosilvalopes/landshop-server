@@ -1,9 +1,8 @@
 /* eslint-disable global-require */
 const nodemailer = require('nodemailer');
+require('dotenv').config({ path: `${__dirname}/../.env` });
 
 module.exports = async () => {
-    require('dotenv').config();
-
     const testAccount = await nodemailer.createTestAccount();
 
     // override enviroment variables

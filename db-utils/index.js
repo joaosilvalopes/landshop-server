@@ -1,23 +1,16 @@
-const pg = require('pg');
 const fs = require('fs');
 const path = require('path');
-require('dotenv').config();
+const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 
 const runSql = async (filePath) => {
-    const client = new pg.Client();
-
-    await client.connect();
-
     const sql = fs.readFileSync(filePath).toString();
 
     try {
-        await client.query(sql);
+        await postgres.query(sql);
     } catch (error) {
         logger.log(error);
     }
-
-    await client.end();
 };
 
 module.exports = {

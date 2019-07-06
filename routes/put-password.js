@@ -1,13 +1,14 @@
 const bcrypt = require('bcrypt');
+const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const { isValidPassword } = require('../utils/validation');
 
-module.exports = (app, connection) => app.put('/password', async (req, res) => {
+module.exports = (app) => app.put('/password', async (req, res) => {
     const { user, body } = req;
     const { oldPassword, newPassword } = body;
 
     try {
-        const { rows: [{ password }] } = await connection.query(`
+        const { rows: [{ password }] } = await postgres.query(`
             select password from Users
             where username = $1
         `, [user.username]);
@@ -26,7 +27,7 @@ module.exports = (app, connection) => app.put('/password', async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(newPassword, +process.env.BCRYPT_SALT_ROUNDS);
 
-        await connection.query(`
+        await postgres.query(`
             update Users
             set password = $1
             where username = $2

@@ -1,9 +1,10 @@
 const get = require('lodash/get');
+const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 
-module.exports = (app, connection) => app.get('/user/:username', async (req, res) => {
+module.exports = (app) => app.get('/user/:username', async (req, res) => {
     try {
-        const result = await connection.query(`
+        const result = await postgres.query(`
             select
                 u.username,
                 u.email,
