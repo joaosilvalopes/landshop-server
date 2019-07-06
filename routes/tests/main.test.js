@@ -16,6 +16,7 @@ describe('Route main test collection', () => {
     require('./post-login');
     require('./put-password');
     require('./post-recover-password-email');
+    require('./post-recover-password');
     require('./put-email');
     require('./post-listing');
     require('./get-listing');

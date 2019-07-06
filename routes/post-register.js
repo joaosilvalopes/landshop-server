@@ -29,6 +29,7 @@ module.exports = (app, connection) => app.post('/register', async (req, res) => 
         `, [username, email, hashedPassword]);
 
         const token = jwt.sign({
+            email,
             username,
             verified: false,
         }, process.env.JWT_SECRET);

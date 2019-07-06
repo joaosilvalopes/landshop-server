@@ -52,4 +52,13 @@ module.exports = {
             </p>
         `,
     }),
+    sendAlertEmail: (email, { title, content }) => emailService.sendMail({
+        from: `"${WEBSITE_NAME}" <${NO_REPLY_EMAIL}>`,
+        to: email,
+        subject: title,
+        html: `
+            <h1>${title}</h1>
+            <p>${content}</p>
+        `,
+    }),
 };

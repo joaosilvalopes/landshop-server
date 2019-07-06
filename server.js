@@ -15,6 +15,7 @@ const secureRoutes = [
     ['put', '/password'],
     ['put', '/email'],
     ['post', '/listing'],
+    ['post', '/recover-password'],
 ];
 
 secureRoutes.forEach(([method, path]) => app[method](path, secure));
@@ -28,10 +29,11 @@ const routes = [
     'post-listing',
     'post-login',
     'post-recover-password-email',
+    'post-recover-password',
     'post-register',
     'post-verify-email',
-    'put-password',
     'put-email',
+    'put-password',
 ];
 
 const client = new pg.Client();
