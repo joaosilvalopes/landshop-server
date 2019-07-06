@@ -20,15 +20,21 @@ module.exports = (app, connection) => app.put('/email', async (req, res) => {
             where username = $2
         `, [email, user.username]);
 
-        const token = jwt.sign({
+        const newUser = {
             ...user,
             email,
             verified: false,
-        }, process.env.JWT_SECRET);
+        };
+
+        const token = jwt.sign(newUser, process.env.JWT_SECRET);
+
+        newUser.token = token;
 
         await emailService.sendVerificationEmail(email, token);
 
-        return res.json({ token });
+        return res.json({
+            user: newUser,
+        });
     } catch (error) {
         logger.log(error);
         return res.status(400).send();
