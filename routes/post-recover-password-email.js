@@ -31,7 +31,7 @@ module.exports = (app, connection) => app.post('/recover-password-email', async 
 
         await emailService.sendRecoverPasswordEmail(email, token);
 
-        return res.status(202).send();
+        return res.status(200).send();
     } catch (error) {
         logger.log(error);
         return res.status(400).send();

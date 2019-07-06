@@ -7,7 +7,7 @@ describe('POST /recover-password-email', () => {
         await request(app)
             .post('/recover-password-email')
             .send({ email: globals.user.email })
-            .expect(202);
+            .expect(200);
     });
 
     it('Should not work for unkown emails', async () => {

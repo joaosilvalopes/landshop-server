@@ -16,8 +16,6 @@
 }
 ```
 
-`POST /recover-password` ❌
-
 `POST /recover-password-email` ✅
 ```
 {
@@ -66,6 +64,13 @@
             "lng": -64.757
         }
     ]
+}
+```
+
+`POST /recover-password` ✅
+```
+{
+	"password": "newPassword123!?"
 }
 ```
 
