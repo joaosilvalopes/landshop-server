@@ -11,6 +11,7 @@
 `POST /login` ✅
 <details>
 <summary>Request</summary>
+
 ```
 {
     "login": "user@example.com",
@@ -21,6 +22,18 @@
 
 <details>
 <summary>Response</summary>
+
+```
+{
+	"username",
+	"email",
+	"password",
+	"verified",
+	"bio",
+	"phone",
+	"token",
+}
+```
 </details>
 
 `POST /recover-password-email` ✅
