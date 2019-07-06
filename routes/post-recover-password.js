@@ -1,9 +1,10 @@
 const bcrypt = require('bcrypt');
+const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const emailService = require('../services/emailService');
 const { isValidPassword } = require('../utils/validation');
 
-module.exports = (app, connection) => app.post('/recover-password', async (req, res) => {
+module.exports = (app) => app.post('/recover-password', async (req, res) => {
     const { password } = req.body;
 
     if (!isValidPassword(password)) {
@@ -13,7 +14,7 @@ module.exports = (app, connection) => app.post('/recover-password', async (req, 
     try {
         const hashedPassword = await bcrypt.hash(password, +process.env.BCRYPT_SALT_ROUNDS);
 
-        await connection.query(`
+        await postgres.query(`
             update Users
             set password = $1
             where username = $2
