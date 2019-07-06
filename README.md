@@ -114,5 +114,10 @@
 
 `PUT /profile` ❌
 
-`PUT /username` ❌
+`PUT /username` ✅
+```
+{
+    "username": "diegocapeli"
+}
+```
 

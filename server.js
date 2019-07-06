@@ -12,10 +12,11 @@ app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
 
 const secureRoutes = [
-    ['put', '/password'],
-    ['put', '/email'],
     ['post', '/listing'],
     ['post', '/recover-password'],
+    ['put', '/password'],
+    ['put', '/email'],
+    ['put', '/username'],
 ];
 
 secureRoutes.forEach(([method, path]) => app[method](path, secure));
@@ -32,6 +33,7 @@ const routes = [
     'post-verify-email',
     'put-email',
     'put-password',
+    'put-username',
 ];
 
 routes.forEach((route) => require(`./routes/${route}`)(app));

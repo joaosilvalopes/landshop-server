@@ -11,14 +11,15 @@ describe('Route main test collection', () => {
     afterAll(closeServer);
 
     require('./post-register');
-    require('./get-user');
     require('./post-verify-email');
     require('./post-login');
-    require('./put-password');
     require('./post-recover-password-email');
     require('./post-recover-password');
-    require('./put-email');
     require('./post-listing');
+    require('./put-email');
+    require('./put-password');
+    require('./put-username');
     require('./get-listing');
     require('./get-listings');
+    require('./get-user');
 });
