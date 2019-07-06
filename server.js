@@ -3,13 +3,13 @@
 /* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
-const pg = require('pg');
 const secure = require('./middlewares/secure');
-require('dotenv').config();
+require('dotenv').config({ path: `${__dirname}/.env` });
 
 const app = express();
 
 app.set('port', process.env.PORT || 3000);
+app.use(bodyParser.json());
 
 const secureRoutes = [
     ['put', '/password'],
@@ -19,8 +19,6 @@ const secureRoutes = [
 ];
 
 secureRoutes.forEach(([method, path]) => app[method](path, secure));
-
-app.use(bodyParser.json());
 
 const routes = [
     'get-listing',
@@ -36,11 +34,7 @@ const routes = [
     'put-password',
 ];
 
-const client = new pg.Client();
-
-client.connect();
-
-routes.forEach((suffix) => require(`./routes/${suffix}`)(app, client));
+routes.forEach((route) => require(`./routes/${route}`)(app));
 
 const server = app.listen(app.get('port'), 'localhost', () => {
     console.log(`The server is now running at http://localhost:${app.get('port')} in ${app.get('env')} mode.`);

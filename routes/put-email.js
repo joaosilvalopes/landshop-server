@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken');
+const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const { isValidEmail } = require('../utils/validation');
 const emailService = require('../services/emailService');
 
-module.exports = (app, connection) => app.put('/email', async (req, res) => {
+module.exports = (app) => app.put('/email', async (req, res) => {
     const { user, body } = req;
     const { email } = body;
 
@@ -12,7 +13,7 @@ module.exports = (app, connection) => app.put('/email', async (req, res) => {
             return res.status(400).send();
         }
 
-        await connection.query(`
+        await postgres.query(`
             update Users
             set
                 email = $1,

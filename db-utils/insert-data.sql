@@ -2,7 +2,7 @@ insert into Users(id, username, email, password, verified) values
 (1, 'admin', 'admin@example.com', 'password123', true),
 (2, 'unverified', 'unverified@example.com', 'password123', false);
 
-insert into Listings(id, user_id, slug, title, description, price, currency, public_phone, public_email) values
+insert into Listings(id, user_id, slug, title, description, price, currency, phone, email) values
 (1, 1, 'bermuda-triangle', 'Bermuda Triangle', 'Description goes here.', 48000, 'EUR', '+351 912 345 678', 'bermudatriangle@example.com'),
 (2, 1, 'listing-a', 'Listing A', 'Description goes here.', 92000, 'EUR', '+351 912 345 678', 'listing-a@example.com'),
 (3, 1, 'listing-b', 'Listing B', 'Description goes here.', 20000, 'EUR', '+351 912 345 678', 'listing-b@example.com'),

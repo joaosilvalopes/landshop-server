@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const get = require('lodash/get');
+const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const {
     isValidUsername,
@@ -8,7 +9,7 @@ const {
     isValidPassword,
 } = require('../utils/validation');
 
-module.exports = (app, connection) => app.post('/login', async (req, res) => {
+module.exports = (app) => app.post('/login', async (req, res) => {
     const { login, password } = req.body;
 
     const isEmail = isValidEmail(login);
@@ -18,7 +19,7 @@ module.exports = (app, connection) => app.post('/login', async (req, res) => {
     }
 
     try {
-        const result = await connection.query(`
+        const result = await postgres.query(`
             select
                 username,
                 email,

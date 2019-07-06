@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const emailService = require('../services/emailService');
 const {
@@ -13,7 +14,7 @@ const messagePerConstraint = {
     users_username_key: 'A user with this username is already registered.',
 };
 
-module.exports = (app, connection) => app.post('/register', async (req, res) => {
+module.exports = (app) => app.post('/register', async (req, res) => {
     const { username, password, email } = req.body;
 
     if (!isValidUsername(username) || !isValidPassword(password) || !isValidEmail(email)) {
@@ -23,7 +24,7 @@ module.exports = (app, connection) => app.post('/register', async (req, res) => 
     try {
         const hashedPassword = await bcrypt.hash(password, +process.env.BCRYPT_SALT_ROUNDS);
 
-        await connection.query(`
+        await postgres.query(`
             insert into Users(username, email, password)
             values($1, $2, $3)
         `, [username, email, hashedPassword]);

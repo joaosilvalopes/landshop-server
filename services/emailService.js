@@ -1,20 +1,13 @@
 const nodeMailer = require('nodemailer');
-
-const {
-    NODEMAILER_HOST,
-    NODEMAILER_PORT,
-    NODEMAILER_SECURE,
-    NODEMAILER_USERNAME,
-    NODEMAILER_PASSWORD,
-} = process.env;
+require('dotenv').config({ path: `${__dirname}/../.env` });
 
 const emailService = nodeMailer.createTransport({
-    host: NODEMAILER_HOST,
-    port: NODEMAILER_PORT,
-    secure: NODEMAILER_SECURE,
+    host: process.env.NODEMAILER_HOST,
+    port: process.env.NODEMAILER_PORT,
+    secure: process.env.NODEMAILER_SECURE,
     auth: {
-        user: NODEMAILER_USERNAME,
-        pass: NODEMAILER_PASSWORD,
+        user: process.env.NODEMAILER_USERNAME,
+        pass: process.env.NODEMAILER_PASSWORD,
     },
 });
 

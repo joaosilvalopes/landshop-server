@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken');
 const get = require('lodash/get');
+const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const emailService = require('../services/emailService');
 const { isValidEmail } = require('../utils/validation');
 
-module.exports = (app, connection) => app.post('/recover-password-email', async (req, res) => {
+module.exports = (app) => app.post('/recover-password-email', async (req, res) => {
     const { email } = req.body;
 
     if (!isValidEmail(email)) {
@@ -12,7 +13,7 @@ module.exports = (app, connection) => app.post('/recover-password-email', async 
     }
 
     try {
-        const result = await connection.query(`
+        const result = await postgres.query(`
             select
                 username,
                 email,
