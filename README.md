@@ -4,21 +4,6 @@
 
 ### Entities
 
-<details>
-<summary>User</summary>
-
-```
-{
-	"username": string,
-	"email": string,
-	"verified": boolean,
-	"bio": string,
-	"phone": string,
-	"token": string
-}
-```
-</details>
-
 `GET /listing/:slug` ✅
 
 `GET /listings` ✅
@@ -41,7 +26,14 @@
 <summary>Response</summary>
 
 ```
-User
+{
+	"username": string,
+	"email": string,
+	"verified": boolean,
+	"bio": string,
+	"phone": string,
+	"token": string
+}
 ```
 </details>
 
