@@ -18,6 +18,7 @@ describe('Route main test collection', () => {
     require('./post-listing');
     require('./put-email');
     require('./put-password');
+    require('./put-profile');
     require('./put-username');
     require('./get-listing');
     require('./get-listings');
