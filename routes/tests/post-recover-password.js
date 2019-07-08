@@ -25,5 +25,7 @@ describe('POST /recover-password', () => {
             .set({ authorization: `Bearer ${globals.user.token}` })
             .send({ password: 'myNewPassword123456!?' })
             .expect(200);
+
+        globals.user.password = 'myNewPassword123456!?';
     });
 });

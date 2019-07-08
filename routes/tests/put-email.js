@@ -14,13 +14,13 @@ describe('PUT /email', () => {
     it('Should succeed', async () => {
         const email = 'user@email.com';
 
-        await request(app)
+        const res = await request(app)
             .put('/email')
             .set({ authorization: `Bearer ${globals.user.token}` })
             .send({ email })
             .expect(200);
 
-        globals.user.email = email;
+        globals.user = { ...globals.user, ...res.body };
 
         await request(app)
             .post('/login')

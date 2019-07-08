@@ -43,11 +43,7 @@ module.exports = (app) => app.post('/login', async (req, res) => {
 
         delete user.password;
 
-        const token = await jwt.sign({
-            email: user.email,
-            username: user.username,
-            verified: user.verified,
-        }, process.env.JWT_SECRET);
+        const token = await jwt.sign(user, process.env.JWT_SECRET);
 
         return res.json({
             ...user,

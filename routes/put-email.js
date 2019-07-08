@@ -33,9 +33,7 @@ module.exports = (app) => app.put('/email', async (req, res) => {
 
         await emailService.sendVerificationEmail(email, token);
 
-        return res.json({
-            user: newUser,
-        });
+        return res.json(newUser);
     } catch (error) {
         logger.log(error);
         return res.status(400).send();
