@@ -2,6 +2,23 @@
 
 # Public Routes
 
+### Entities
+
+<details>
+<summary>User</summary>
+
+```
+{
+	"username": string,
+	"email": string,
+	"verified": boolean,
+	"bio": string,
+	"phone": string,
+	"token": string
+}
+```
+</details>
+
 `GET /listing/:slug` ✅
 
 `GET /listings` ✅
@@ -14,8 +31,8 @@
 
 ```
 {
-    "login": "user@example.com",
-    "password: "password123?"
+    "login": string,
+    "password: string
 }
 ```
 </details>
@@ -24,15 +41,7 @@
 <summary>Response</summary>
 
 ```
-{
-	"username",
-	"email",
-	"password",
-	"verified",
-	"bio",
-	"phone",
-	"token",
-}
+User
 ```
 </details>
 
