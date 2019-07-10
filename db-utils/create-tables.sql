@@ -16,7 +16,7 @@ create table Users (
 
 create table Listings (
    id             bigserial      not null,
-   user_id        integer        not null references Users(id),
+   user_id        integer        not null references Users(id) on delete cascade,
    slug           varchar(255)   not null unique,
    title          varchar(255)   not null,
    description    text,
@@ -31,7 +31,7 @@ create table Listings (
 );
 
 create table ListingCoordinates (
-   listing_id     integer        not null references Listings(id),
+   listing_id     integer        not null references Listings(id) on delete cascade,
    lat            float          not null,
    lng            float          not null,
 

@@ -6,6 +6,37 @@
 	},
 	"item": [
 		{
+			"name": "/account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpb2dvY2FwZXMyMjJzc3Nzc3NsYTIyMjIyQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJkaW9nbyIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNTYyNDU3NDMzfQ.FL93ehTVgw05Y7Lwg705LkAjlvNX6mC30_KfQ2Dp7zk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api}}/account",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/listing/:slug",
 			"request": {
 				"method": "GET",
@@ -403,7 +434,7 @@
 	],
 	"variable": [
 		{
-			"id": "30796a27-74ce-4367-a725-1ca04b3c763f",
+			"id": "c4c4f816-def2-4bc1-abbf-722807150d2a",
 			"key": "api",
 			"value": "http://localhost:3000",
 			"type": "string"
