@@ -14,8 +14,9 @@ app.use(bodyParser.json());
 const secureRoutes = [
     ['post', '/listing'],
     ['post', '/recover-password'],
-    ['put', '/password'],
     ['put', '/email'],
+    ['put', '/password'],
+    ['put', '/profile'],
     ['put', '/username'],
 ];
 
@@ -33,6 +34,7 @@ const routes = [
     'post-verify-email',
     'put-email',
     'put-password',
+    'put-profile',
     'put-username',
 ];
 

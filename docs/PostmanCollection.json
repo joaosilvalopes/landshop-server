@@ -196,7 +196,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"diogocapela\",\n    \"email\": \"diogocapessssssla@example.com\",\n    \"password\": \"password1234567890\"\n}"
+					"raw": "{\n    \"username\": \"diogo\",\n    \"email\": \"diogocapes222ssssssla22222@example.com\",\n    \"password\": \"password1234567890\"\n}"
 				},
 				"url": {
 					"raw": "{{api}}/register",
@@ -301,6 +301,82 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "/profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpb2dvY2FwZXMyMjJzc3Nzc3NsYTIyMjIyQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJkaW9nbyIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNTYyNDU3NDMzfQ.FL93ehTVgw05Y7Lwg705LkAjlvNX6mC30_KfQ2Dp7zk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"bio\": \"Bio goes here...\",\n    \"phone\": \"+351 912 345 678\"\n}"
+				},
+				"url": {
+					"raw": "{{api}}/profile",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/username",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpb2dvY2FwZXMyMjJzc3Nzc3NsYTIyMjIyQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJkaW9nbyIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNTYyNDU3NDMzfQ.FL93ehTVgw05Y7Lwg705LkAjlvNX6mC30_KfQ2Dp7zk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"user123\"\n}"
+				},
+				"url": {
+					"raw": "{{api}}/username",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"username"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -327,7 +403,7 @@
 	],
 	"variable": [
 		{
-			"id": "dae17f73-8b08-4979-a705-411f352a01ea",
+			"id": "30796a27-74ce-4367-a725-1ca04b3c763f",
 			"key": "api",
 			"value": "http://localhost:3000",
 			"type": "string"

@@ -2,6 +2,8 @@ create table Users (
    id             bigserial      not null,
    username       varchar(255)   not null unique,
    email          varchar(255)   not null unique,
+   first_name     varchar(255),
+   last_name      varchar(255),
    bio            text,
    phone          varchar(255),
    password       varchar(255),
