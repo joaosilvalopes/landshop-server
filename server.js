@@ -12,6 +12,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
 
 const secureRoutes = [
+    ['delete', '/account'],
     ['post', '/listing'],
     ['post', '/recover-password'],
     ['put', '/email'],
@@ -23,6 +24,7 @@ const secureRoutes = [
 secureRoutes.forEach(([method, path]) => app[method](path, secure));
 
 const routes = [
+    'delete-account',
     'get-listing',
     'get-listings',
     'get-user',
