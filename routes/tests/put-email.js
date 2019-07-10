@@ -7,7 +7,7 @@ describe('PUT /email', () => {
     it('Should send 400 if email is invalid', async () => {
         await request(app)
             .put('/email')
-            .set({ authorization: `Bearer ${globals.user.token}` })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
             .send({ email: 'invalidEmail' })
             .expect(400);
     });
@@ -15,26 +15,26 @@ describe('PUT /email', () => {
     it('Should succeed', async () => {
         const email = 'user@email.com';
 
-        const res = await request(app)
+        await request(app)
             .put('/email')
-            .set({ authorization: `Bearer ${globals.user.token}` })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
             .send({ email })
             .expect(200);
 
         const token = jwt.sign({
             email,
-            username: globals.user.username,
-            verified: globals.user.verified,
+            username: globals.users.user1.username,
+            verified: globals.users.user1.verified,
         }, process.env.JWT_SECRET);
 
-        globals.user.email = email;
-        globals.user.token = token;
+        globals.users.user1.email = email;
+        globals.users.user1.token = token;
 
         await request(app)
             .post('/login')
             .send({
-                login: globals.user.email,
-                password: globals.user.password,
+                login: globals.users.user1.email,
+                password: globals.users.user1.password,
             })
             .expect(200);
     });

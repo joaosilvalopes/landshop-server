@@ -8,7 +8,7 @@ describe('POST /login', () => {
             .post('/login')
             .send({
                 login: 'unknownUser',
-                password: globals.user.password,
+                password: globals.users.user1.password,
             })
             .expect(400);
     });
@@ -17,7 +17,7 @@ describe('POST /login', () => {
         await request(app)
             .post('/login')
             .send({
-                login: globals.user.username,
+                login: globals.users.user1.username,
                 password: 'wrongPassword12345',
             })
             .expect(400);
@@ -27,21 +27,38 @@ describe('POST /login', () => {
         await request(app)
             .post('/login')
             .send({
-                login: globals.user.username,
-                password: globals.user.password,
+                login: globals.users.user1.username,
+                password: globals.users.user1.password,
+            })
+            .expect(200);
+
+        await request(app)
+            .post('/login')
+            .send({
+                login: globals.users.user2.username,
+                password: globals.users.user2.password,
             })
             .expect(200);
     });
 
     it('Should work with email', async () => {
-        const res = await request(app)
+        const res1 = await request(app)
             .post('/login')
             .send({
-                login: globals.user.email,
-                password: globals.user.password,
+                login: globals.users.user1.email,
+                password: globals.users.user1.password,
             })
             .expect(200);
 
-        globals.user.token = res.body.token;
+        const res2 = await request(app)
+            .post('/login')
+            .send({
+                login: globals.users.user2.email,
+                password: globals.users.user2.password,
+            })
+            .expect(200);
+
+        globals.users.user1.token = res1.body.token;
+        globals.users.user2.token = res2.body.token;
     });
 });

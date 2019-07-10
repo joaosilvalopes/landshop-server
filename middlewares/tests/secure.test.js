@@ -5,7 +5,7 @@ const secure = require('../secure');
 
 let app;
 let server;
-const user = { username: 'userTest', verified: 1 };
+const user = { username: 'firstuser', verified: 1 };
 
 describe('secure', () => {
     beforeAll(() => {

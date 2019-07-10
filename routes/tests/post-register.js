@@ -7,8 +7,8 @@ describe('POST /register', () => {
         await request(app)
             .post('/register')
             .send({
-                username: 'userTest',
-                email: 'user@mail.com',
+                username: 'firstuser',
+                email: 'firstuser@mail.com',
                 password: 'short',
             })
             .expect(400);
@@ -19,7 +19,7 @@ describe('POST /register', () => {
             .post('/register')
             .send({
                 username: 'use',
-                email: 'user@mail.com',
+                email: 'firstuser@mail.com',
                 password: 'password1234567890',
             })
             .expect(400);
@@ -37,15 +37,26 @@ describe('POST /register', () => {
     });
 
     it('Should succeed', async () => {
-        globals.user = {
-            username: 'userTest',
-            email: 'user@mail.com',
+        globals.users.user1 = {
+            username: 'firstuser',
+            email: 'firstuser@mail.com',
+            password: 'password1234567890',
+        };
+
+        globals.users.user2 = {
+            username: 'seconduser',
+            email: 'seconduser@mail.com',
             password: 'password1234567890',
         };
 
         await request(app)
             .post('/register')
-            .send(globals.user)
+            .send(globals.users.user1)
+            .expect(200);
+
+        await request(app)
+            .post('/register')
+            .send(globals.users.user2)
             .expect(200);
     });
 
@@ -53,8 +64,8 @@ describe('POST /register', () => {
         await request(app)
             .post('/register')
             .send({
-                username: 'userTest',
-                email: 'user@mail1.com',
+                username: 'firstuser',
+                email: 'firstusernew@mail.com',
                 password: 'password1234567890',
             })
             .expect(400, {
@@ -66,8 +77,8 @@ describe('POST /register', () => {
         await request(app)
             .post('/register')
             .send({
-                username: 'userTest1',
-                email: 'user@mail.com',
+                username: 'firstusernew',
+                email: 'firstuser@mail.com',
                 password: 'password1234567890',
             })
             .expect(400, {
