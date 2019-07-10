@@ -3,37 +3,38 @@ const jwt = require('jsonwebtoken');
 const { app } = require('../../server');
 const globals = require('./globals');
 
-describe('PUT /email', () => {
-    it('Should send 400 if email is invalid', async () => {
+describe('PUT /username', () => {
+    it('Should send 400 if the username is invalid', async () => {
         await request(app)
-            .put('/email')
+            .put('/username')
             .set({ authorization: `Bearer ${globals.user.token}` })
-            .send({ email: 'invalidEmail' })
+            .send({ username: null })
             .expect(400);
     });
 
     it('Should succeed', async () => {
-        const email = 'user@email.com';
+        const username = 'mynewusername';
 
-        const res = await request(app)
-            .put('/email')
+        await request(app)
+            .put('/username')
             .set({ authorization: `Bearer ${globals.user.token}` })
-            .send({ email })
+            .send({ username })
             .expect(200);
 
         const token = jwt.sign({
-            email,
-            username: globals.user.username,
+            username,
+            email: globals.user.email,
             verified: globals.user.verified,
         }, process.env.JWT_SECRET);
 
-        globals.user.email = email;
+        globals.user.username = username;
         globals.user.token = token;
+        globals.listing.username = username;
 
         await request(app)
             .post('/login')
             .send({
-                login: globals.user.email,
+                login: globals.user.username,
                 password: globals.user.password,
             })
             .expect(200);

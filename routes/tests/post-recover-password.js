@@ -20,10 +20,12 @@ describe('POST /recover-password', () => {
     });
 
     it('Should succeed', async () => {
+        globals.user.password = 'myNewPassword123456!?';
+
         await request(app)
             .post('/recover-password')
             .set({ authorization: `Bearer ${globals.user.token}` })
-            .send({ password: 'myNewPassword123456!?' })
+            .send({ password: globals.user.password })
             .expect(200);
 
         globals.user.password = 'myNewPassword123456!?';
