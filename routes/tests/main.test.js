@@ -20,6 +20,7 @@ describe('Route main test collection', () => {
     require('./put-password');
     require('./put-profile');
     require('./put-username');
+    require('./put-profile-picture');
     require('./get-listing');
     require('./get-listings');
     require('./get-user');

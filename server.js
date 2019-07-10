@@ -19,6 +19,7 @@ const secureRoutes = [
     ['put', '/password'],
     ['put', '/profile'],
     ['put', '/username'],
+    ['put', '/profile-picture'],
 ];
 
 secureRoutes.forEach(([method, path]) => app[method](path, secure));
@@ -38,6 +39,7 @@ const routes = [
     'put-password',
     'put-profile',
     'put-username',
+    'put-profile-picture',
 ];
 
 routes.forEach((route) => require(`./routes/${route}`)(app));
