@@ -3,6 +3,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
+const slowDown = require('express-slow-down');
 const secure = require('./middlewares/secure');
 require('dotenv').config({ path: `${__dirname}/.env` });
 
@@ -10,6 +11,12 @@ const app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
+app.enable('trust proxy');
+app.use(slowDown({
+    windowMs: 1 * 60 * 1000, // 1 minute
+    delayAfter: 50, // allow 50 requests per 1 minute, then...
+    delayMs: 1000, // begin adding 1s of delay per request above 50
+}));
 
 const secureRoutes = [
     ['post', '/listing'],
