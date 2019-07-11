@@ -58,7 +58,7 @@ describe('POST /login', () => {
             })
             .expect(200);
 
-        globals.users.user1.token = res1.body.token;
-        globals.users.user2.token = res2.body.token;
+        globals.users.user1 = { ...globals.users.user1, ...res1.body };
+        globals.users.user2 = { ...globals.users.user2, ...res2.body };
     });
 });

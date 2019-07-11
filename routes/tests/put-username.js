@@ -1,5 +1,4 @@
 const request = require('supertest');
-const jwt = require('jsonwebtoken');
 const { app } = require('../../server');
 const globals = require('./globals');
 
@@ -13,23 +12,14 @@ describe('PUT /username', () => {
     });
 
     it('Should succeed', async () => {
-        const username = 'mynewusername';
-
-        await request(app)
+        const res = await request(app)
             .put('/username')
             .set({ authorization: `Bearer ${globals.users.user1.token}` })
-            .send({ username })
+            .send({ username: 'mynewusername' })
             .expect(200);
 
-        const token = jwt.sign({
-            username,
-            email: globals.users.user1.email,
-            verified: globals.users.user1.verified,
-        }, process.env.JWT_SECRET);
-
-        globals.users.user1.username = username;
-        globals.users.user1.token = token;
-        globals.listings.listing1.username = username;
+        globals.users.user1 = { ...globals.users.user1, ...res.body };
+        globals.listings.listing1.username = globals.users.user1.username;
 
         await request(app)
             .post('/login')
