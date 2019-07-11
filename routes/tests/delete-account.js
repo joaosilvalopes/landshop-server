@@ -7,7 +7,7 @@ describe('DELETE /account', () => {
         await request(app)
             .delete('/account')
             .set({ authorization: 'Bearer INVALID_TOKEN' })
-            .expect(403);
+            .expect(401);
     });
 
     it('Should work', async () => {

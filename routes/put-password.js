@@ -14,14 +14,10 @@ module.exports = (app) => app.put('/password', async (req, res) => {
         `, [user.username]);
 
         if (!await bcrypt.compare(oldPassword, password)) {
-            return res.status(403).send({ error: 'Wrong password.' });
+            return res.status(401).send({ error: 'Wrong password.' });
         }
 
-        if (newPassword === oldPassword) {
-            return res.status(400).send();
-        }
-
-        if (!isValidPassword(newPassword)) {
+        if (newPassword === oldPassword || !isValidPassword(newPassword)) {
             return res.status(400).send();
         }
 

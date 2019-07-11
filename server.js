@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 const secureRoutes = [
     ['delete', '/account'],
+    ['delete', '/listing/:slug'],
     ['post', '/listing'],
     ['post', '/recover-password'],
     ['put', '/email'],
@@ -26,6 +27,7 @@ secureRoutes.forEach(([method, path]) => app[method](path, secure));
 
 const routes = [
     'delete-account',
+    'delete-listing',
     'get-listing',
     'get-listings',
     'get-user',
