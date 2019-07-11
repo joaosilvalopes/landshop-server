@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
 const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const { isValidEmail } = require('../utils/validation');
+const { withToken } = require('../utils/authToken');
 const emailService = require('../services/emailService');
 
 const messagePerConstraint = {
@@ -9,8 +9,7 @@ const messagePerConstraint = {
 };
 
 module.exports = (app) => app.put('/email', async (req, res) => {
-    const { user, body } = req;
-    const { email } = body;
+    const { email } = req.body;
 
     try {
         if (!isValidEmail(email)) {
@@ -23,19 +22,17 @@ module.exports = (app) => app.put('/email', async (req, res) => {
                 email = $1,
                 verified = false
             where username = $2
-        `, [email, user.username]);
+        `, [email, req.user.username]);
 
-        const newUser = {
-            ...user,
+        const user = withToken({
+            ...req.user,
             email,
             verified: false,
-        };
+        });
 
-        const token = jwt.sign(newUser, process.env.JWT_SECRET);
+        await emailService.sendVerificationEmail(email, user.token);
 
-        await emailService.sendVerificationEmail(email, token);
-
-        return res.json({ ...newUser, token });
+        return res.json(user);
     } catch (error) {
         if (messagePerConstraint[error.constraint]) {
             return res.status(400).json({ error: messagePerConstraint[error.constraint] });

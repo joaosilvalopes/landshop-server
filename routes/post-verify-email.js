@@ -1,12 +1,12 @@
-const jwt = require('jsonwebtoken');
 const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
+const { verifyToken } = require('../utils/authToken');
 
 module.exports = (app) => app.post('/verify-email', async (req, res) => {
     const { token } = req.body;
 
     try {
-        const { username } = jwt.verify(token, process.env.JWT_SECRET);
+        const { username } = verifyToken(token);
 
         await postgres.query(`
             update Users

@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
 const get = require('lodash/get');
 const logger = require('../utils/logger');
+const { verifyToken } = require('../utils/authToken');
 
 const secure = (req, res, next) => {
     const authorization = get(req, 'headers.authorization') || '';
@@ -12,7 +12,7 @@ const secure = (req, res, next) => {
     }
 
     try {
-        req.user = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = verifyToken(token);
 
         return next();
     } catch (e) {

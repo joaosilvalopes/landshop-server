@@ -1,6 +1,5 @@
+const omit = require('lodash/omit');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const get = require('lodash/get');
 const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const {
@@ -8,6 +7,7 @@ const {
     isValidEmail,
     isValidPassword,
 } = require('../utils/validation');
+const { withToken } = require('../utils/authToken');
 
 module.exports = (app) => app.post('/login', async (req, res) => {
     const { login, password } = req.body;
@@ -31,24 +31,17 @@ module.exports = (app) => app.post('/login', async (req, res) => {
             where ${isEmail ? 'email' : 'username'} = $1
         `, [login]);
 
-        const user = get(result, 'rows.0');
-
-        if (!user) {
+        if (result.rows.length < 1) {
             return res.status(400).json({ error: 'User doesn\'t exist.' });
         }
 
-        if (!await bcrypt.compare(password, user.password)) {
+        if (!await bcrypt.compare(password, result.rows[0].password)) {
             return res.status(400).json({ error: 'Wrong password.' });
         }
 
-        delete user.password;
+        const user = withToken(result.rows[0]);
 
-        const token = await jwt.sign(user, process.env.JWT_SECRET);
-
-        return res.json({
-            ...user,
-            token,
-        });
+        return res.json(user);
     } catch (error) {
         logger.log(error);
         return res.status(400).send();

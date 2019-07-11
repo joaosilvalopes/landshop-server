@@ -1,7 +1,7 @@
 const request = require('supertest');
 const express = require('express');
-const jwt = require('jsonwebtoken');
 const secure = require('../secure');
+const { signToken } = require('../../utils/authToken');
 
 let app;
 let server;
@@ -23,16 +23,14 @@ describe('secure', () => {
     });
 
     it('Should send 401 when invalid token is set', async () => {
-        const token = await jwt.sign(user, `${process.env.JWT_SECRET}qwertyu`);
-
         await request(app)
             .get('/')
-            .set({ authorization: `Bearer ${token}` })
+            .set({ authorization: 'Bearer someinvalidtoken' })
             .expect(401);
     });
 
     it('Should send 200 and pass user info to request ', async () => {
-        const token = await jwt.sign(user, process.env.JWT_SECRET);
+        const token = signToken(user);
 
         await request(app)
             .get('/')
