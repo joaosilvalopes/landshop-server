@@ -5,12 +5,12 @@ const globals = require('./globals');
 const newPassword = 'password12345678901';
 
 describe('PUT /password', () => {
-    it('Should send 403 if old password is wrong', async () => {
+    it('Should send 401 if old password is wrong', async () => {
         await request(app)
             .put('/password')
             .set({ authorization: `Bearer ${globals.users.user1.token}` })
             .send({ oldPassword: 'wrong old password', newPassword })
-            .expect(403);
+            .expect(401);
     });
 
     it('Should send 400 if new password is equal to old password', async () => {

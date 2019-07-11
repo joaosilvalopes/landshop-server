@@ -8,7 +8,7 @@ const secure = (req, res, next) => {
     const [, token] = authorization.split(' ');
 
     if (!token) {
-        return res.status(403).send();
+        return res.status(401).send();
     }
 
     try {
@@ -17,7 +17,7 @@ const secure = (req, res, next) => {
         return next();
     } catch (e) {
         logger.log(e);
-        return res.status(403).send();
+        return res.status(401).send();
     }
 };
 

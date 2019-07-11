@@ -11,12 +11,12 @@ describe('POST /recover-password', () => {
             .expect(400);
     });
 
-    it('Should return 403 if the token is invalid', async () => {
+    it('Should return 401 if the token is invalid', async () => {
         await request(app)
             .post('/recover-password')
             .set({ authorization: 'Bearer INVALID_TOKEN' })
             .send({ password: 'nicePassword123!!!' })
-            .expect(403);
+            .expect(401);
     });
 
     it('Should succeed', async () => {
