@@ -1,15 +1,16 @@
 create table Users (
-   id             bigserial      not null,
-   username       varchar(255)   not null unique,
-   email          varchar(255)   not null unique,
-   first_name     varchar(255),
-   last_name      varchar(255),
-   bio            text,
-   phone          varchar(255),
-   password       varchar(255),
-   verified       boolean        not null default false,
-   created_at     timestamp      not null default now(),
-   updated_at     timestamp      not null default now(),
+   id                bigserial      not null,
+   username          varchar(255)   not null unique,
+   email             varchar(255)   not null unique,
+   first_name        varchar(255),
+   last_name         varchar(255),
+   bio               text,
+   phone             varchar(255),
+   password          varchar(255),
+   profile_picture   varchar(255),
+   verified          boolean        not null default false,
+   created_at        timestamp      not null default now(),
+   updated_at        timestamp      not null default now(),
 
    primary key(id)
 );
