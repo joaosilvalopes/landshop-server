@@ -22,6 +22,10 @@ module.exports = (app) => app.get('/listing/:slug', async (req, res) => {
             and l.slug = $1
         `, [req.params.slug]);
 
+        if (result.rows.length < 1) {
+            return res.status(404).send();
+        }
+
         const parsed = result.rows.reduce((acc, item) => {
             const { lat, lng, ...newItem } = item;
             const coordinates = get(acc, 'coordinates') || [];
@@ -32,9 +36,9 @@ module.exports = (app) => app.get('/listing/:slug', async (req, res) => {
             };
         }, {});
 
-        res.json(parsed);
+        return res.json(parsed);
     } catch (error) {
         logger.log(error);
-        res.status(400).json({ error });
+        return res.status(400).json({ error });
     }
 });

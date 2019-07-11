@@ -4,7 +4,8 @@ const generateSlug = require('../utils/generateSlug');
 const { isValidListingTitle } = require('../utils/validation');
 
 module.exports = (app) => app.post('/listing', async (req, res) => {
-    const { title, description, price, currency, phone, email, username, coordinates } = req.body;
+    const { title, description, price, currency, phone, email, coordinates } = req.body;
+    const { username } = req.user;
 
     if (!isValidListingTitle(title)) {
         return res.status(400).send();

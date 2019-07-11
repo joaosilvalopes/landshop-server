@@ -6,7 +6,7 @@ describe('PUT /profile', () => {
     it('Should send 400 if phone is invalid', async () => {
         await request(app)
             .put('/profile')
-            .set({ authorization: `Bearer ${globals.user.token}` })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
             .send({
                 firstName: 'John',
                 lastName: 'Doe',
@@ -26,10 +26,10 @@ describe('PUT /profile', () => {
 
         const res = await request(app)
             .put('/profile')
-            .set({ authorization: `Bearer ${globals.user.token}` })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
             .send(data)
             .expect(200);
 
-        globals.user = { ...globals.user, ...res.body };
+        globals.users.user1 = { ...globals.users.user1, ...res.body };
     });
 });

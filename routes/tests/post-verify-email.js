@@ -13,9 +13,9 @@ describe('POST /verify-email', () => {
 
     it('Should succeed', async () => {
         const token = jwt.sign({
-            email: globals.user.email,
-            username: globals.user.username,
-            verified: globals.user.verified,
+            email: globals.users.user1.email,
+            username: globals.users.user1.username,
+            verified: globals.users.user1.verified,
         }, process.env.JWT_SECRET);
 
         await request(app)

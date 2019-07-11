@@ -7,7 +7,8 @@ describe('GET /listings', () => {
         await request(app)
             .get('/listings')
             .expect(200, {
-                [globals.listing.slug]: globals.listing,
+                [globals.listings.listing1.slug]: globals.listings.listing1,
+                [globals.listings.listing2.slug]: globals.listings.listing2,
             });
     });
 });

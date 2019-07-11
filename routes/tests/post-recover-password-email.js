@@ -6,7 +6,7 @@ describe('POST /recover-password-email', () => {
     it('Should succeed for known emails', async () => {
         await request(app)
             .post('/recover-password-email')
-            .send({ email: globals.user.email })
+            .send({ email: globals.users.user1.email })
             .expect(200);
     });
 

@@ -7,7 +7,7 @@ describe('PUT /username', () => {
     it('Should send 400 if the username is invalid', async () => {
         await request(app)
             .put('/username')
-            .set({ authorization: `Bearer ${globals.user.token}` })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
             .send({ username: null })
             .expect(400);
     });
@@ -17,25 +17,25 @@ describe('PUT /username', () => {
 
         await request(app)
             .put('/username')
-            .set({ authorization: `Bearer ${globals.user.token}` })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
             .send({ username })
             .expect(200);
 
         const token = jwt.sign({
             username,
-            email: globals.user.email,
-            verified: globals.user.verified,
+            email: globals.users.user1.email,
+            verified: globals.users.user1.verified,
         }, process.env.JWT_SECRET);
 
-        globals.user.username = username;
-        globals.user.token = token;
-        globals.listing.username = username;
+        globals.users.user1.username = username;
+        globals.users.user1.token = token;
+        globals.listings.listing1.username = username;
 
         await request(app)
             .post('/login')
             .send({
-                login: globals.user.username,
-                password: globals.user.password,
+                login: globals.users.user1.username,
+                password: globals.users.user1.password,
             })
             .expect(200);
     });

@@ -13,14 +13,14 @@ describe('DELETE /account', () => {
     it('Should work', async () => {
         await request(app)
             .delete('/account')
-            .set({ authorization: `Bearer ${globals.user.token}` })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
             .expect(200);
 
         await request(app)
             .post('/login')
             .send({
-                login: globals.user.username,
-                password: globals.user.password,
+                login: globals.users.user1.username,
+                password: globals.users.user1.password,
             })
             .expect(400);
     });

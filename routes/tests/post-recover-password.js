@@ -6,7 +6,7 @@ describe('POST /recover-password', () => {
     it('Should return 400 if the password is invalid', async () => {
         await request(app)
             .post('/recover-password')
-            .set({ authorization: `Bearer ${globals.user.token}` })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
             .send({ password: null })
             .expect(400);
     });
@@ -20,14 +20,14 @@ describe('POST /recover-password', () => {
     });
 
     it('Should succeed', async () => {
-        globals.user.password = 'myNewPassword123456!?';
+        globals.users.user1.password = 'myNewPassword123456!?';
 
         await request(app)
             .post('/recover-password')
-            .set({ authorization: `Bearer ${globals.user.token}` })
-            .send({ password: globals.user.password })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
+            .send({ password: globals.users.user1.password })
             .expect(200);
 
-        globals.user.password = 'myNewPassword123456!?';
+        globals.users.user1.password = 'myNewPassword123456!?';
     });
 });

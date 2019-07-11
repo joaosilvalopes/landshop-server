@@ -8,7 +8,7 @@ describe('PUT /password', () => {
     it('Should send 403 if old password is wrong', async () => {
         await request(app)
             .put('/password')
-            .set({ authorization: `Bearer ${globals.user.token}` })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
             .send({ oldPassword: 'wrong old password', newPassword })
             .expect(403);
     });
@@ -16,33 +16,33 @@ describe('PUT /password', () => {
     it('Should send 400 if new password is equal to old password', async () => {
         await request(app)
             .put('/password')
-            .set({ authorization: `Bearer ${globals.user.token}` })
-            .send({ oldPassword: globals.user.password, newPassword: globals.user.password })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
+            .send({ oldPassword: globals.users.user1.password, newPassword: globals.users.user1.password })
             .expect(400);
     });
 
     it('Should send 400 if new password is invalid', async () => {
         await request(app)
             .put('/password')
-            .set({ authorization: `Bearer ${globals.user.token}` })
-            .send({ oldPassword: globals.user.password, newPassword: 'short' })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
+            .send({ oldPassword: globals.users.user1.password, newPassword: 'short' })
             .expect(400);
     });
 
     it('Should change password', async () => {
         await request(app)
             .put('/password')
-            .set({ authorization: `Bearer ${globals.user.token}` })
-            .send({ oldPassword: globals.user.password, newPassword })
+            .set({ authorization: `Bearer ${globals.users.user1.token}` })
+            .send({ oldPassword: globals.users.user1.password, newPassword })
             .expect(200);
 
-        globals.user.password = newPassword;
+        globals.users.user1.password = newPassword;
 
         await request(app)
             .post('/login')
             .send({
-                login: globals.user.username,
-                password: globals.user.password,
+                login: globals.users.user1.username,
+                password: globals.users.user1.password,
             })
             .expect(200);
     });
