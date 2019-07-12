@@ -1,4 +1,3 @@
-const omit = require('lodash/omit');
 const bcrypt = require('bcrypt');
 const postgres = require('../config/postgres');
 const logger = require('../utils/logger');

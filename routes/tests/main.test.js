@@ -24,6 +24,7 @@ describe('Route main test collection', () => {
     require('./get-listing');
     require('./get-listings');
     require('./get-user');
+    require('./put-listing');
     require('./delete-listing');
     require('./delete-account');
 });
