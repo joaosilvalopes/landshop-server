@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
 const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const { isValidUsername } = require('../utils/validation');
+const { withToken } = require('../utils/authToken');
 
 const messagePerConstraint = {
     users_username_key: 'This username is already in use.',
@@ -21,14 +21,9 @@ module.exports = (app) => app.put('/username', async (req, res) => {
             where email = $2
         `, [username, req.user.email]);
 
-        const newUser = {
-            ...req.user,
-            username,
-        };
+        const user = withToken({ ...req.user, username });
 
-        const token = jwt.sign(newUser, process.env.JWT_SECRET);
-
-        return res.json({ ...newUser, token });
+        return res.json(user);
     } catch (error) {
         if (messagePerConstraint[error.constraint]) {
             return res.status(400).json({ error: messagePerConstraint[error.constraint] });

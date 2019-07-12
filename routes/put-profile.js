@@ -1,6 +1,7 @@
 const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const { isValidName, isValidPhone, isValidBio } = require('../utils/validation');
+const { withToken } = require('../utils/authToken');
 
 module.exports = (app) => app.put('/profile', async (req, res) => {
     const { firstName, lastName, bio, phone } = req.body;
@@ -20,13 +21,13 @@ module.exports = (app) => app.put('/profile', async (req, res) => {
             where username = $5
         `, [firstName, lastName, bio, phone, req.user.username]);
 
-        return res.json({
+        return res.json(withToken({
             ...req.user,
             firstName,
             lastName,
             bio,
             phone,
-        });
+        }));
     } catch (error) {
         logger.log(error);
         return res.status(400).send();

@@ -1,9 +1,9 @@
-const jwt = require('jsonwebtoken');
 const get = require('lodash/get');
 const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const emailService = require('../services/emailService');
 const { isValidEmail } = require('../utils/validation');
+const { signToken } = require('../utils/authToken');
 
 module.exports = (app) => app.post('/recover-password-email', async (req, res) => {
     const { email } = req.body;
@@ -28,7 +28,7 @@ module.exports = (app) => app.post('/recover-password-email', async (req, res) =
             return res.status(400).json({ error: 'User doesn\'t exist.' });
         }
 
-        const token = await jwt.sign(user, process.env.JWT_SECRET);
+        const token = signToken(user);
 
         await emailService.sendRecoverPasswordEmail(email, token);
 

@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const postgres = require('../config/postgres');
 const logger = require('../utils/logger');
 const emailService = require('../services/emailService');
@@ -8,6 +7,7 @@ const {
     isValidEmail,
     isValidPassword,
 } = require('../utils/validation');
+const { withToken } = require('../utils/authToken');
 
 const messagePerConstraint = {
     users_email_key: 'A user with this email is already registered.',
@@ -29,20 +29,15 @@ module.exports = (app) => app.post('/register', async (req, res) => {
             values($1, $2, $3)
         `, [username, email, hashedPassword]);
 
-        const token = jwt.sign({
+        const user = withToken({
             email,
             username,
             verified: false,
-        }, process.env.JWT_SECRET);
-
-        await emailService.sendVerificationEmail(email, token);
-
-        return res.json({
-            email,
-            username,
-            verified: false,
-            token,
         });
+
+        await emailService.sendVerificationEmail(email, user.token);
+
+        return res.json(user);
     } catch (error) {
         if (messagePerConstraint[error.constraint]) {
             return res.status(400).json({ error: messagePerConstraint[error.constraint] });
