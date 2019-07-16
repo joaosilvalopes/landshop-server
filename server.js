@@ -3,6 +3,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const secure = require('./middlewares/secure');
 require('dotenv').config({ path: `${__dirname}/.env` });
 
@@ -10,6 +11,7 @@ const app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
+app.use(cors());
 
 const secureRoutes = [
     ['delete', '/account'],
