@@ -1,12 +1,12 @@
 {
-  "name": "land-marker-server",
+  "name": "landshop-server",
   "version": "0.0.1",
   "scripts": {
     "clean": "rm -rf node_modules && rm package-lock.json",
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "db:create": "node -e 'require(\"./db-utils\").createTables();'",
     "db:drop": "node -e 'require(\"./db-utils\").dropTables();'",
+    "db:create": "node -e 'require(\"./db-utils\").createTables();'",
     "db:insert": "node -e 'require(\"./db-utils\").insertData();'",
     "test": "jest --runInBand --forceExit",
     "test:watch": "jest --runInBand --watchAll"

@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "4cd0b786-6610-4ddb-831c-3b2a7b7174b7",
-		"name": "land-marker-server",
+		"name": "landshop-server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -39,6 +39,38 @@
 		{
 			"name": "/listing/:slug",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNlY29uZHVzZXIiLCJlbWFpbCI6InNlY29uZHVzZXJAbWFpbC5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImJpbyI6bnVsbCwicGhvbmUiOm51bGwsImlhdCI6MTU2Mjc4OTE2M30.asp0wwkLyFFSS_xYnEKvmCdOaLrg-7-wBrBHjPkeWZM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api}}/listing/second-listing-2",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"listing",
+						"second-listing-2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/listing/:slug",
+			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -46,13 +78,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{api}}/listing/bermuda-triangle",
+					"raw": "{{api}}/listing/first-listing-1",
 					"host": [
 						"{{api}}"
 					],
 					"path": [
 						"listing",
-						"bermuda-triangle"
+						"first-listing-1"
 					]
 				}
 			},
@@ -104,6 +136,16 @@
 		{
 			"name": "/listing",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRpb2dvIiwiZW1haWwiOiJkaW9nb2NhcGVzMjIyc3Nzc3NzbGEyMjIyMkBleGFtcGxlLmNvbSIsInZlcmlmaWVkIjpmYWxzZSwiYmlvIjpudWxsLCJwaG9uZSI6bnVsbCwiaWF0IjoxNTYyNzg5OTM5fQ.uP7-kisH8CIGkQv7kOLtvXQSFnXH8cvFPifKPdQUUH0",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -115,7 +157,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"diogocapelawwww\",\n    \"title\": \"My Listing\",\n    \"description\": \"Description goes here.\",\n    \"price\": 20,\n    \"currency\": \"EUR\",\n    \"phone\": \"+351912345678\",\n    \"email\": \"public@example.com\",\n    \"coordinates\": [\n        {\n            \"lat\": 25.774,\n            \"lng\": -80.190\n        },\n        {\n            \"lat\": 18.466,\n            \"lng\": -66.118\n        },\n        {\n            \"lat\": 32.321,\n            \"lng\": -64.757\n        }\n    ]\n}"
+					"raw": "{\n\t\"username\": \"diogo\",\n    \"title\": \"My Listing 4444555\",\n    \"description\": \"Description goes here.\",\n    \"price\": 20,\n    \"currency\": \"EUR\",\n    \"phone\": \"+351912345678\",\n    \"email\": \"public@example.com\",\n    \"coordinates\": [\n        {\n            \"lat\": 25.774,\n            \"lng\": -80.190\n        },\n        {\n            \"lat\": 18.466,\n            \"lng\": -66.118\n        },\n        {\n            \"lat\": 32.321,\n            \"lng\": -64.757\n        }\n    ]\n}"
 				},
 				"url": {
 					"raw": "{{api}}/listing",
@@ -143,7 +185,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"login\": \"diogocapela\",\n\t\"password\": \"?123password!!!!!\"\n}"
+					"raw": "{\n\t\"login\": \"diogo\",\n\t\"password\": \"password1234567890\"\n}"
 				},
 				"url": {
 					"raw": "{{api}}/login",
@@ -291,6 +333,44 @@
 			"response": []
 		},
 		{
+			"name": "/listing",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpb2dvY2FwZXMyMjJzc3Nzc3NsYTIyMjIyQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJkaW9nbyIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNTYyNDU3NDMzfQ.FL93ehTVgw05Y7Lwg705LkAjlvNX6mC30_KfQ2Dp7zk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/javascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api}}/listing",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"listing"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/password",
 			"request": {
 				"auth": {
@@ -328,6 +408,44 @@
 					],
 					"path": [
 						"password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/profile-picture",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpb2dvY2FwZXMyMjJzc3Nzc3NsYTIyMjIyQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJkaW9nbyIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNTYyNDU3NDMzfQ.FL93ehTVgw05Y7Lwg705LkAjlvNX6mC30_KfQ2Dp7zk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "{{api}}/profile-picture",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"profile-picture"
 					]
 				}
 			},
@@ -434,9 +552,9 @@
 	],
 	"variable": [
 		{
-			"id": "c4c4f816-def2-4bc1-abbf-722807150d2a",
+			"id": "3a016c4d-a62e-4409-924f-e0cac427e136",
 			"key": "api",
-			"value": "http://localhost:3000",
+			"value": "https://landshop.io",
 			"type": "string"
 		}
 	]
