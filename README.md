@@ -1,123 +1,36 @@
-# land-marker-server
+# landshop-server
 
-# Public Routes
+API documentation is available [here](https://documenter.getpostman.com/view/1599657/SVSKMpFE?version=latest&language=node).
 
-### Entities
+## Deployments
 
-`GET /listing/:slug` ✅
+- **Live:** [https://api.landshop.io](https://api.landshop.io)
 
-`GET /listings` ✅
+## Scripts
 
-`GET /user/:username` ✅
+```bash
+# Start the development kit
+$ npm run dev
 
-`POST /login` ✅
-<details>
-<summary>Request</summary>
+# Deletes node_modules and npm package-lock.lock
+$ npm run clean
 
-```
-{
-    "login": string,
-    "password: string
-}
-```
-</details>
+# Run all tests
+$ npm run test
 
-<details>
-<summary>Response</summary>
-
-```
-{
-	"username": string,
-	"email": string,
-	"verified": boolean,
-	"bio": string,
-	"phone": string,
-	"token": string
-}
-```
-</details>
-
-`POST /recover-password-email` ✅
-```
-{
-    "email": "user@example.com"
-}
+# Start the production server
+$ npm run start
 ```
 
-`POST /register` ✅
-```
-{
-    "username": "john",
-    "email": "user@example.com",
-    "password: "password123?"
-}
-```
+## Database
 
-`POST /verify-email/:token` ✅
+```bash
+# Drop all tables
+$ npm run db:drop
 
-# Secure Routes
+# Create all the tables
+$ npm run db:create
 
-`DELETE /account` ❌
-
-`DELETE /listing` ❌
-
-`POST /listing` ✅
+# Insert default data
+$ npm run db:insert
 ```
-{
-    "username": "john",
-    "title": "My Listing",
-    "description": "Description goes here.",
-    "price": 20,
-    "currency": "EUR",
-    "phone": "+351912345678",
-    "email": "public@example.com",
-    "coordinates": [
-        {
-            "lat": 25.774,
-            "lng": -80.190
-        },
-        {
-            "lat": 18.466,
-            "lng": -66.118
-        },
-        {
-            "lat": 32.321,
-            "lng": -64.757
-        }
-    ]
-}
-```
-
-`POST /recover-password` ✅
-```
-{
-	"password": "newPassword123!?"
-}
-```
-
-`PUT /email` ✅
-```
-{
-    "email": "new.email@example.com"
-}
-```
-
-`PUT /listing` ❌
-
-`PUT /password` ✅
-```
-{
-    "oldPassword": "password123?",
-    "newPassword": "?123password!",
-}
-```
-
-`PUT /profile` ❌
-
-`PUT /username` ✅
-```
-{
-    "username": "diegocapeli"
-}
-```
-
