@@ -11,6 +11,8 @@ const runSql = async (filePath) => {
     } catch (error) {
         logger.log(error);
     }
+
+    process.exit(0);
 };
 
 module.exports = {

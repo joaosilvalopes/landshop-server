@@ -8,6 +8,7 @@ create table Users (
    phone             varchar(255),
    password          varchar(255),
    profile_picture   varchar(255),
+   has_google_auth   boolean        not null default false,
    verified          boolean        not null default false,
    created_at        timestamp      not null default now(),
    updated_at        timestamp      not null default now(),

@@ -25,7 +25,8 @@ module.exports = (app) => app.post('/login', async (req, res) => {
                 password,
                 verified,
                 bio,
-                phone
+                phone,
+                profile_picture
             from Users
             where ${isEmail ? 'email' : 'username'} = $1
         `, [login]);
@@ -38,7 +39,10 @@ module.exports = (app) => app.post('/login', async (req, res) => {
             return res.status(400).json({ error: 'Wrong password.' });
         }
 
-        const user = withToken(result.rows[0]);
+        const user = withToken({
+            ...result.rows[0],
+            profilePicture: result.rows[0].profile_picture,
+        });
 
         return res.json(user);
     } catch (error) {

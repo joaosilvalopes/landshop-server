@@ -4,6 +4,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const passport = require('passport');
 const secure = require('./middlewares/secure');
 require('dotenv').config({ path: `${__dirname}/.env` });
 
@@ -12,6 +13,15 @@ const app = express();
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use(passport.initialize());
+
+passport.serializeUser((user, cb) => {
+  cb(null, user);
+});
+passport.deserializeUser((user, cb) => {
+  cb(null, user);
+});
 
 const secureRoutes = [
     ['delete', '/account'],
@@ -34,6 +44,7 @@ const routes = [
     'get-listing',
     'get-listings',
     'get-user',
+    'get-google-auth',
     'post-listing',
     'post-login',
     'post-recover-password-email',

@@ -7,6 +7,7 @@
     "dev": "nodemon server.js",
     "db:drop": "node -e 'require(\"./db-utils\").dropTables();'",
     "db:create": "node -e 'require(\"./db-utils\").createTables();'",
+    "db:restore": "npm run db:drop && npm run db:create",
     "db:insert": "node -e 'require(\"./db-utils\").insertData();'",
     "test": "jest --runInBand --forceExit",
     "test:watch": "jest --runInBand --watchAll"
@@ -23,6 +24,8 @@
     "lodash": "^4.17.11",
     "multer": "^1.4.1",
     "nodemailer": "^6.2.1",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^2.0.0",
     "pg": "^7.11.0"
   },
   "devDependencies": {
